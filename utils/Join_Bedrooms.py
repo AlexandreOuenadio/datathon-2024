@@ -19,4 +19,4 @@ listings['bedrooms'] = listings['bedrooms'].fillna(
 print(f"Valeurs manquantes après extraction du 'name' : {listings['bedrooms'].isnull().sum()}")
 
 # Enregistrer le fichier enrichi 
-listings.to_csv('/Users/mathisgorvien/DEV/datathon-2024/Data/raw/airbnb-lyon-december-2023/listings_detailed.csv', index=False)
+listings.to_csv('Data/raw/airbnb-lyon-december-2023/listings_detailed.csv', index=False)
