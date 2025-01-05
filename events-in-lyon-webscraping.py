@@ -13,6 +13,7 @@ from opencage.geocoder import OpenCageGeocode
 import locale
 import contextlib
 import os
+import dateparser
 
 
 # Set the LC_TIME environment variable to French
@@ -24,6 +25,8 @@ try:
     print("Locale set to 'fr_FR.UTF-8'")
 except locale.Error as e:
     print(f"Error setting locale: {e}")
+
+print("Starting the scraping process...")
 
 # Initialize the OpenCage geocoder with your API key
 api_key = "6cad3d3f306c4604afbd406ec04daaca"
@@ -106,8 +109,8 @@ def find_events(html_content, events_list):
         return start_date_str, end_date_str
 
     def generate_dates(start_date_str, end_date_str, date_format="%a. %d %b. %Y"):
-        start_date = datetime.datetime.strptime(start_date_str, date_format)
-        end_date = datetime.datetime.strptime(end_date_str, date_format)
+        start_date = dateparser.parse(start_date_str)
+        end_date = dateparser.parse(end_date_str)
         delta = end_date - start_date
         return [(start_date + datetime.timedelta(days=i)).strftime("%d-%m-%Y") for i in range(delta.days + 1)]
     
@@ -177,3 +180,5 @@ convert_to_csv(events_list, os.path.join(BASE_DIR, f"events.csv"))
 
 
 driver.quit()
+
+print("Scraping process completed successfully!")
