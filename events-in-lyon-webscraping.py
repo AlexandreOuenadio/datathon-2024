@@ -29,7 +29,7 @@ except locale.Error as e:
 print("Starting the scraping process...")
 
 # Initialize the OpenCage geocoder with your API key
-api_key = "6cad3d3f306c4604afbd406ec04daaca"
+api_key = "YOUR-API-KEY"
 geocoder = OpenCageGeocode(api_key)
 
 
